@@ -1,0 +1,159 @@
+[
+  {
+    "id": 1,
+    "name": "Tikka Pizza",
+    "type": "Italian",
+    "dish": "Pizza",
+    "image": "./foodBhalo.jpg",
+    "price": 1234
+    },
+
+  {
+    "id": 2,
+    "name": "Malai boti Pizza",
+    "type": "Italian",
+    "dish": "Pizza",
+    "image": "./foodBhalo.jpg",
+    "price": 1234
+    },
+  {
+    "id": 3,
+    "name": "Grill Burger",
+    "type": "Grill",
+
+    "dish": "Burger",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 4,
+    "name": "Zinger Burger",
+    "type": "Zinger",
+    "dish": "Burger",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 5,
+    "name": "Cheese Burger",
+    "type": "Cheese Lover",
+    "dish": "Burger",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 6,
+    "name": "Club Sandwitch",
+    "type": "Italian",
+    "dish": "Sandwitch",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 7,
+    "name": "Grill Sandwitch",
+    "type": "Italian",
+    "dish": "Sandwitch",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 8,
+    "name": "Loaded Fries",
+    "type": "Fast Food",
+    "dish": "Fries",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 9,
+    "name": "Chicken Karahi",
+    "type": "Desi Food",
+    "dish": "Karahi",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    
+  },
+  {
+    "id": 10,
+    "name": "Dumba Karahi",
+    "type": "Desi Food",
+    "dish": "Karahi",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    
+  },
+  {
+    "id": 11,
+    "name": " Palao Sajji ",
+    "type": "Desi Food",
+    "dish": "Sajji",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 12,
+    "name": " Palao Kabab ",
+    "type": "Desi Food",
+    "dish": "Palao ",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 13,
+    "name": "Nalli Biryani",
+    "type": "Desi Food",
+    "dish": "Biryani",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 14,
+    "name": "Karachi Biryani",
+    "type": "Desi Food",
+    "dish": "Biryani",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    },
+  {
+    "id": 15,
+    "name": "Grill Fish",
+    "type": "Desi Food",
+    "dish": "Fish",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    
+  },
+  {
+    "id": 16,
+    "name": "Fried Fish",
+    "type": "Desi Food",
+    "dish": "Fish",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    
+  },
+  {
+    "id": 17,
+    "name": "Qasoori Falooda",
+    "type": "Desi Food",
+    "dish": "Falooda",
+    "image": "./foodBhalo.jpg",
+
+    "price": 1234
+    }
+]
