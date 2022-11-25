@@ -2013,3 +2013,167 @@ how 1 button get all values
   // const abc = location.state.id;
   // console.log(abc.name);
  
+   // useEffect(() => {
+  //   handleOrder();
+  // }, []);
+     // console.log(product);
+    // const students = await fetch("/students");
+    // const data = await students.json();
+    // console.log("here", data);
+    // setStudentData(data);
+    
+  // const Order = async (id) => {
+  //   const newOrder = {
+  //     name: name,
+  //     lastname: lastname,
+  //     email: email,
+  //     address: address,
+  //   };
+  //   if (name && lastname && email && address)
+  //   {const eachOrder = (order, id);
+  //     await (eachOrder,newOrder).then(() => { navigate("/product")});}
+  //   else alert("Please fill all the fields");
+  // };
+  // console.log(errors);
+
+  new appended
+  import React from "react";
+import { useState } from "react";
+import { useNavigate ,NavLink} from "react-router-dom";
+import Data from "../Data.json";
+
+export default function Content() {
+  const[cart,setCart]=useState("");
+  const [value, setValue] = useState(Data);
+  const [search, setSearch] = useState("");
+  const [filterValue, setFilterValue] = useState([]);
+  const navigate = useNavigate();
+  //unique type set define 
+  const type = [...new Set(Data.map((obj) => obj.type))].map((type) => {
+    return Data.find((obj) => obj.type === type);
+  });
+// show selected filter type 
+  function handler(e) {
+    const selectedType = e.target.value;
+    const arr = Data.filter((element) => {
+      return (element.type === selectedType);
+    });
+
+    setValue(arr);
+    setFilterValue(arr);
+  }
+  function handleSearch() {
+    if (search === "") {
+      setValue(filterValue);
+    } else {
+      const filterResult = filterValue.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setValue(filterResult);
+    }
+  }
+
+  function handleClick(product) {
+    navigate("/product", { state: { id: product } });
+  }
+
+  return (
+    <div>
+      <div className="productsFilter">
+        <div>
+          <label> TYPE</label>
+          <select className="optionsStyle" onChange={handler}>
+            <option value="Punjab">Select Type</option>
+            {type.map((response, index) => {
+              return <option key={index}>{response.type}</option>;
+            })}
+          </select>
+        </div>
+
+        <label style={{ margin: "5px 0px 0px 0px" }}> Dish</label>
+        <div className="optionsStyle">
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <button onClick={handleSearch}>
+          Search
+          <svg
+            className="searchListIcon"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+        </button>
+      </div>{" "}
+      <button
+        onClick={() => {
+          console.log(cart);
+        }}
+      >
+        CHECKOUT
+      </button>
+      <h1>Products</h1>
+      <div className="productsList">
+        {value.map((product) => {
+          return (
+            <div key={product.id}>
+              <div className="producteach">
+                <img
+                  className="productsListImg"
+                  src={product.image}
+                  alt={product.name}
+                />
+                <h2 className="productsListName"> {product.name}</h2>
+                <b className="productsListType"> Type:- {product.type}</b>
+
+                <p className="productsListPrice"> Price: {product.price}</p>
+                <NavLink to="/product" className="">
+                  <button
+                    className="productsListOrder"
+                    onClick={() => {
+                      handleClick(product);
+                    }}
+                  >
+                    Order Now
+                  </button>
+                </NavLink>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+checking method
+const [order, setOrder] = useState([]);
+  const [email, setEmail] = useState({});
+  const [name, setName] = useState({});
+  const [lastname, setLastName] = useState({});
+  const [address, setAddress] = useState({});
+
+  // const Order = async (id) => {
+  //   const newOrder = {
+  //     name: name,
+  //     lastname: lastname,
+  //     email: email,
+  //     address: address,
+  //   };
+  //   if (name && lastname && email && address)
+  //   {const eachOrder = (order, id);
+  //     await (eachOrder,newOrder).then(() => { navigate("/product")});}
+  //   else alert("Please fill all the fields");
+  // };
+  // console.log(errors);
