@@ -35,33 +35,33 @@ export default function Content() {
     }
 }
 
-  // const reset_ = () => {
+  const reset_ = () => {
 
-  //   if (searchTerm != "") {
-  //     const test = Data.filter((value) => {
-  //       console.log("1");
-  //       console.log(value);
+    if (searchTerm != "") {
+      const test = Data.filter((value) => {
+        console.log("1");
+        console.log(value);
 
-  //       if (searchType === "") {                                                                     
-  //         return searchType;
-  //       } else if (
-  //         (searchType === value.type &&
-  //           value.dish.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //         value.name.toLowerCase().includes(searchTerm.toLowerCase()))
-  //       ) {
-  //         console.log(value);
-  //         return value;
-  //       }
-  //     }).map((product) => product);
-  //     setList(test);
-  //     console.log(list);
-  //     setFlag(true);
-  //   } 
-  //   else {
-  //     setFlag(false);
-  //     console.log(Data);
-  //   }
-  // };
+        if (searchType === "") {                                                                     
+          return searchType;
+        } else if (
+          (searchType === value.type &&
+            value.dish.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          value.name.toLowerCase().includes(searchTerm.toLowerCase()))
+        ) {
+          console.log(value);
+          return value;
+        }
+      }).map((product) => product);
+      setList(test);
+      console.log(list);
+      setFlag(true);
+    } 
+    else {
+      setFlag(false);
+      console.log(Data);
+    }
+  };
 
   const addToCart = (product) => {
     console.log(product);
@@ -69,17 +69,12 @@ export default function Content() {
     setCart([...cart, product]);
   };
 
-  // useEffect(() => {
-  //   handleOrder();
-  // }, []);
+
   const navigate = useNavigate();
   function handleOrder(product) {
-    // console.log(product);
-    navigate("/product", {state: {id: [product]}  });
-    // const students = await fetch("/students");
-    // const data = await students.json();
-    // console.log("here", data);
-    // setStudentData(data);
+  
+    navigate("/product", {state: {id: product}  });
+    
   }
   return (
     <div>

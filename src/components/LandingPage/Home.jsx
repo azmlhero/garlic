@@ -5,7 +5,7 @@ import Header from "./Header";
 // import SearchFilter from "./SearchFilter";
 
 // import Data from "./Data.json"
-import Content from "./Content";
+import Contents from "./Contents";
 import Footer from "./Footer";
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       <div>
         <Header/>
         <Banner />
-        <Content />
+        <Contents/>
         {/* <FoodType />
         <SearchFilter /> */}
         <Footer/>

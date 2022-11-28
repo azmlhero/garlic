@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../LandingPage/Header";
 import Footer from "../LandingPage/Footer";
 import { TextField, Button } from "@mui/material";
@@ -25,30 +25,42 @@ const columns = [
 export default function Order() {
   const navigate = useNavigate();
   const [id, setId] = useState({});
-  const [order, setOrder] = useState([]);
-  const [email, setEmail] = useState({});
-  const [name, setName] = useState({});
-  const [lastname, setLastName] = useState({});
-  const [address, setAddress] = useState({});
+  const [user, setUser] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    address: "",
+  });
 
-  // const Order = async (id) => {
-  //   const newOrder = {
-  //     name: name,
-  //     lastname: lastname,
-  //     email: email,
-  //     address: address,
-  //   };
-  //   if (name && lastname && email && address)
-  //   {const eachOrder = (order, id);
-  //     await (eachOrder,newOrder).then(() => { navigate("/product")});}
-  //   else alert("Please fill all the fields");
-  // };
-  // console.log(errors);
+  const [order, setOrder] = useState([]);
+
+  const [total, setTotal] = useState();
+  const [p_name, setP_Name] = useState();
+  const [quantity, setQuantity] = useState();
+
+  const getData = () => {
+    setTotal(localStorage.getItem("total"));
+    setP_Name(localStorage.getItem("name"));
+    setQuantity(localStorage.getItem("quantity"));
+
+    console.log(localStorage.getItem("total"));
+    console.log(localStorage.getItem("name"));
+    console.log(localStorage.getItem("quantity"));
+  };
+  useEffect(() => {
+    getData();
+  }, [total, p_name, quantity]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(`submitted`);
     navigate("/bill");
+  };
+  let name, value;
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setUser({ ...user, [name]: value });
   };
   const {
     register,
@@ -65,23 +77,18 @@ export default function Order() {
           <thead>
             <tr className="productOrderTableHeading">
               <th className="productOrderTableHeading1">Name</th>
+
               <th className="productOrderTableHeading2">Quantity</th>
               <th className="productOrderTableHeading3">Total</th>
             </tr>
+            <tr className="productOrderTableHeading">
+              <th className="productOrderTableHeading1">{p_name}</th>
+
+              <th className="productOrderTableHeading2">{quantity}</th>
+              <th className="productOrderTableHeading3">{total}/Rs</th>
+            </tr>
           </thead>
-          <tbody>
-            {/* {.map((item, index) => {
-              return (
-                <>
-                  <tr key={index}>
-                    <td>{item.name}</td>
-                    <td>{item.qty}</td>
-                    <td>{item.price}/Rs</td>
-                  </tr>
-                </>
-              );
-            })} */}
-          </tbody>
+          <tbody></tbody>
         </table>
         <form onSubmit={handleSubmit} className="formStyle">
           <h2>Contact Information</h2>
@@ -93,11 +100,9 @@ export default function Order() {
                 type="text"
                 placeholder="Your Name*"
                 required="Name is required"
-                // value={inputs.username || ""}
-                // onChange={handleChange}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                name="name"
+                value={user.name}
+                onChange={handleInputs}
               />
               <br />
               <label> Last Name:</label>
@@ -105,9 +110,9 @@ export default function Order() {
                 className="inputFields"
                 type="text"
                 placeholder="last Name*"
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
+                name="lastname"
+                value={user.lastname}
+                onChange={handleInputs}
               />
             </div>
             <br />
@@ -117,9 +122,9 @@ export default function Order() {
               type="email"
               placeholder="Email *"
               required
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              name="email"
+              value={user.email}
+              onChange={handleInputs}
             />
 
             <Region />
@@ -133,9 +138,9 @@ export default function Order() {
               type="text"
               // value={email}
               placeholder="HOUSE#1 STREET 2 NEAR G1 MARKET"
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
+              name="address"
+              value={user.address}
+              onChange={handleInputs}
             />
             {/* navigate("/bill") */}
             {/* <NavLink to="/bill"> */}

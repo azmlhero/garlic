@@ -101,18 +101,11 @@ export default function Contents() {
       <div className="home-div">
         <h1>Products</h1>
         <table className="productsList">
-          <tr>
-
-
-            <th>Image</th>
-
-            <th>Name</th>
-
-            <th>Price</th>
-          </tr>
+            
           {val.map((result, index) => {
             return (
               <>
+
                 <tr key={index} className="producteach">
                   <td>
                     <img
@@ -121,26 +114,10 @@ export default function Contents() {
                       className="productsListImg"
                     />
                   </td>
-                  <td className="productsListName">
-                    <b>Name</b>
-                    <br />
-                    {result.name}
-                  </td>
-                  <td className="productsListType">
-                    <b>Type</b>
-                    <br />
-                    {result.type}
-                  </td>
-                  <td className="productsListType">
-                    <b>Dish</b>
-                    <br />
-                    {result.dish}
-                  </td>
-                  <td className="productsListPrice">
-                    <b>Price</b>
-                    <br />
-                    {result.price}/Rs
-                  </td>
+                  <td className="productsListName"><b>Name</b><br />{result.name}</td>
+                  <td className="productsListType"><b>Type</b><br />{result.type}</td>
+                  <td className="productsListType"><b>Dish</b><br />{result.dish}</td>
+                  <td className="productsListPrice"><b>Price</b><br/>{result.price}/Rs</td>
                   <td>
                     <button
                       className="productsListOrder"
