@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../LandingPage/Header";
 import Footer from "../LandingPage/Footer";
 import { TextField, Button } from "@mui/material";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useLocation} from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Region from "./Region";
@@ -23,7 +23,11 @@ const columns = [
 ];
 
 export default function Order() {
+
   const navigate = useNavigate();
+  const location = useLocation();
+console.log(location.state.id3);
+  const [product,setProduct]=useState(location.state.id);
   const [id, setId] = useState({});
   const [user, setUser] = useState({
     name: "",
@@ -32,24 +36,24 @@ export default function Order() {
     address: "",
   });
 
-  const [order, setOrder] = useState([]);
+  // const [order, setOrder] = useState([]);
 
-  const [total, setTotal] = useState();
-  const [p_name, setP_Name] = useState();
-  const [quantity, setQuantity] = useState();
+  // const [total, setTotal] = useState();
+  // const [p_name, setP_Name] = useState();
+  // const [quantity, setQuantity] = useState();
 
-  const getData = () => {
-    setTotal(localStorage.getItem("total"));
-    setP_Name(localStorage.getItem("name"));
-    setQuantity(localStorage.getItem("quantity"));
+  // const getData = () => {
+  //   setTotal(localStorage.getItem("total"));
+  //   setP_Name(localStorage.getItem("name"));
+  //   setQuantity(localStorage.getItem("quantity"));
 
-    console.log(localStorage.getItem("total"));
-    console.log(localStorage.getItem("name"));
-    console.log(localStorage.getItem("quantity"));
-  };
-  useEffect(() => {
-    getData();
-  }, [total, p_name, quantity]);
+  //   console.log(localStorage.getItem("total"));
+  //   console.log(localStorage.getItem("name"));
+  //   console.log(localStorage.getItem("quantity"));
+  // };
+  // useEffect(() => {
+  //   getData();
+  // }, [total, p_name, quantity]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -82,10 +86,10 @@ export default function Order() {
               <th className="productOrderTableHeading3">Total</th>
             </tr>
             <tr className="productOrderTableHeading">
-              <th className="productOrderTableHeading1">{p_name}</th>
+              <th className="productOrderTableHeading1">{location.state.id.name}</th>
 
-              <th className="productOrderTableHeading2">{quantity}</th>
-              <th className="productOrderTableHeading3">{total}/Rs</th>
+              <th className="productOrderTableHeading2">{location.state.id3}</th>
+              <th className="productOrderTableHeading3">{location.state.id2}/Rs</th>
             </tr>
           </thead>
           <tbody></tbody>

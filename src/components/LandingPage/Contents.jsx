@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Data from "../Data.json";
 
 export default function Contents() {
@@ -47,7 +47,7 @@ export default function Contents() {
   function handleClick(result) {
     // setCartValue([...cartvalue, result]);
     // console.log(cartvalue);
-    navigate("/product", { state: { id: result } });
+    navigate(`/product/${result.id}`);
   }
   //   useEffect(() => {
   //     console.log('updated value', cartvalue);
@@ -114,6 +114,7 @@ export default function Contents() {
             return (
               <>
                 <tr key={index} className="producteach">
+                 
                   <td>
                     <img
                       src={result.image}
@@ -149,6 +150,7 @@ export default function Contents() {
                       ADD TO CART
                     </button>
                   </td>
+
                 </tr>
               </>
             );
