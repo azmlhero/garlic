@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Component } from "react";
 import Header from "./LandingPage/Header";
 import Footer from "./LandingPage/Footer";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,68 +6,77 @@ import { useLocation } from "react-router-dom";
 import Data from "./Data.json";
 // import img from "..//images/foodBhalo.jpg"
 
-export default function Product() {
-  const [qty, setQty] = useState(0);
-  const [product, setProduct] = useState(Data);
-  const [total, setTotal] = useState(0);
-  const params = useParams();
-  console.log("Params", params, "Params.id", params.id);
+export default class Product extends Component {
+  constructor(props){
+    super(props);
+  
 
-  const prod = product.filter((item) => {
-    return item.id == params.id;
-  });
-  console.log(prod);
+    this.state={
+      qty:0,
+      // product:Data,
+      total:0,
+      name:"",
+      prod:Data.find((item)=>{
+       return  item.id== window.location.id
+      })
 
-  const navigate = useNavigate();
-  function decClick() {
-    if (qty > 0) {
-      setQty(qty - 1);
-      {
-        prod.map((item) => {
-          return setTotal(qty * item.price);
-        });
-      }
-    } else {
-      return 0;
+      // prod: product.filter((item) => {
+      //   return item.id == params.id;
+      // })
+      // product: Data.find((item) => {
+      //   return item.id == this.location.state.dish.id;
+      // })
+
     }
+    console.log(this.props.item.id)  
   }
+  getData = () => {
+    this.setState({ name: localStorage.getItem("name") });
+    this.setState({ total: localStorage.getItem("total") });   
+    this.setState({ qty: localStorage.getItem("quantity") });
+   
+    console.log(localStorage.getItem("total"));
+    console.log(localStorage.getItem("name"));
+    console.log(localStorage.getItem("quantity"));
+  };
 
-  function incClick() {
-    if (qty < 5) {
-      setQty(qty + 1);
-      {
-        prod.map((item) => {
-          return setTotal(qty * item.price);
-        });
-      }
-    }
-  }
+  
+  // decClick=()=> {
+  //   if (this.qty > 0) {
+  //     this.setState({qty:this.state.qty--});
+      
+  //     {
+  //       prod.map((item) => {
+  //         return this.setState({total:(this.state.qty * item.price)});
+  //       });
+  //     }
+  //   } else {
+  //     return 0;
+  //   }
+  // }
 
-  useEffect(() => {
-    {
-      prod.map((item) => {
-        return setTotal(qty * item.price);
-      });
-    }
-  }, [qty]);
-
-  function buyNow(res) {
-    // setTotal(localStorage.getItem("total"));
-    //   // setP_Name(localStorage.getItem("name"));
-    //   // setQuantity(localStorage.getItem("quantity"));
-
-    //   localStorage.setItem("total", qty * res.price);
-    //   console.log(product.price);
-    //   localStorage.setItem("name", res.name);
-    //   localStorage.setItem("quantity", qty);
-
-    navigate("/order", { state: { id: res, id2: total, id3: qty } });
-  }
-
-  return (
+  //  incClick=()=> {
+  //   if (this.qty < 5) {
+  //     this.setState({qty:this.state.qty++});
+  //     {
+  //       prod.map((item) => {
+  //         return this.setState({total:(this.state.qty * item.price)});
+        
+  //       });
+  //     }
+  //   }
+  // }
+  //   useEffect(() => {
+//     getData();
+//   }, [total, p_name, quantity]);
+  render(){
+  return(
     <div>
+       <h1>hello</h1>   
+        
+       <div>
       <Header />
-      {prod.map((res) => {
+      {this.state.prod.map((res) => {
         return (
           <div>
             <div style={{ margin: "100px 0px 300px 0px" }}>
@@ -100,29 +109,29 @@ export default function Product() {
                     <div className="productPageButtons">
                       <div className="productPageListQty">
                         <button
-                          disabled={qty === 0}
-                          onClick={decClick}
+                          disabled={this.state.qty === 0}
+                          onClick={this.decClick}
                           className="productPageQtyInc"
                         >
                           -
                         </button>
-                        <b className="productPageQty">{qty}</b>
+                        <b className="productPageQty">{this.state.qty}</b>
                         <button
-                          disabled={qty === 5}
-                          onClick={incClick}
+                          disabled={this.qty === 5}
+                          onClick={this.incClick}
                           className="productPageQtyDec"
                         >
                           +
                         </button>
                       </div>
                       <div>
-                        <h3>Total</h3> Rs. {total}
+                        <h3>Total</h3> Rs. {this.state.total}
                       </div>
 
                       <button
-                        disabled={qty === 0}
+                        disabled={this.qty === 0}
                         className="productPageListOrder"
-                        onClick={() => buyNow(res)}
+                        onClick={() =>this.buyNow(res)}
                       >
                         Buy Now
                       </button>
@@ -140,6 +149,10 @@ export default function Product() {
       })}
 
       <Footer />
+      </div>
+   
     </div>
-  );
+ 
+  )
+}
 }
