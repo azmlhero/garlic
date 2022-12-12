@@ -40,6 +40,9 @@ export default class Product extends Component {
     console.log(localStorage.getItem("quantity"));
   };
 
+  componentDidMount(){
+    this.getData();
+  }
   
   // decClick=()=> {
   //   if (this.qty > 0) {
