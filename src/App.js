@@ -7,7 +7,7 @@ import Contact from "./components/Contact";
 // import {withRouter} from "react-router"
 // import ComplainSuggestions from "./Pages/User_Pages/Profile/ComplainSuggestions";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Order from "./components/CheckoutForm/Order";
+import Order from "./components/CheckoutForm/Order";
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path="/product/:id" element={<Product/>} />
-          {/* <Route exact path="/order" element={<Order />} /> */}
+          <Route exact path="/order/:id/:id/:id" element={<Order />} />
           <Route exact path="/bill" element={<Bill />} />
 
           <Route exact path="/contact" element={<Contact />} />

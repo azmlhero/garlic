@@ -16,13 +16,7 @@ export default class Contents extends Component {
     };
   }
 
-  // function GoToButton({ navigation, screenName }) {
-  //   return (
-  //   title={`Go to ${screenName}`}
-  //   onPress={() => navigation. navigate(screenName)}
-  // handleClick() {
-  //   this.setState({ count: this.state.count + 1 })
-  // }
+  
   // const [val, setVal] = useState(Data);
   // const [filtervalue, setFilterValue] = useState([]);
   // const [handlefilter, setHandleFilter] = useState("");
@@ -78,8 +72,9 @@ export default class Contents extends Component {
 
 
 
- 
+
     window.location = `/product/${result.id}`;
+   
   };
 
   render() {
