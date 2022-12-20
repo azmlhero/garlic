@@ -7,16 +7,34 @@ class CountryDiv extends React.Component {
     super();
     this.state = {
       country: [],
+      countryValue: "",
     };
   }
   componentDidMount() {
     axios.get("https://countriesnow.space/api/v0.1/countries").then((res) => {
-      console.log(res);
-      {
+      console.log(res.data.data, "countries");
+      
         this.setState({ country: res.data.data });
-      }
+      
     });
   }
+  handleCountry = (event) => {
+    console.log(event.target.value)
+    this.setState({ countryValue: event.target.value });
+  };
+  componentDidUpdate(prevState) {
+    if (prevState.countryValue !== this.state.countryValue) {
+      axios
+        .post("https://countriesnow.space/api/v0.1/countries/states", {
+          country: this.state.countryValue,
+        })
+        .then((res) => {
+          console.log(res.data.data.states, "state");
+          // {this.setState({country:res.data.data})}
+          {
+            this.setState({ sta: res.data.data.states });
+          }
+        });}}
 
   render() {
     return (
@@ -26,9 +44,8 @@ class CountryDiv extends React.Component {
         <select
           id="cars"
           value={this.props.value}
-          onChange={(event) => {
-            this.props.callbackMethod(event.target.value);
-          }}
+          onChange={this.handleCountry}
+
           // onChange={(event)=>{
           //   return(
           //     console.log(event.target.value)
@@ -45,10 +62,21 @@ class CountryDiv extends React.Component {
             );
           })}
         </select>
+        {/* <select>
+        {this.state.country.map((con, id) => {
+            return (
+              <option clasName="regionOption1" key={id} value={con.id}>
+                {con.country}
+              </option>
+            );
+          })}
+           </select> */}
       </div>
     );
   }
+ 
 }
+
 class StateDiv extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +84,7 @@ class StateDiv extends React.Component {
     this.state = {
       sta: [],
     };
-    console.log(this.props.value, "rfrffff");
+    console.log(this.props, "rfrffff");
   }
   // componentDidMount() {
   //   axios
@@ -70,18 +98,24 @@ class StateDiv extends React.Component {
   //       }
   //     });
   // }
-  componentDidUpdate(prevProps,prevState){
-    if(this.props.country!==prevState.country)
-    {  axios.post("https://countriesnow.space/api/v0.1/countries/states",{
-      'country': this.props.value
-    })
-    .then((res) => {
-       console.log(res.data.data.states,"resssss");
-      // {this.setState({country:res.data.data})}
-      {this.setState({sta:res.data.data.states})}
 
-  })}
+  componentDidUpdate(prevState) {
+    if (prevState.countryValue !== this.state.countryValue) {
+      axios
+        .post("https://countriesnow.space/api/v0.1/countries/states", {
+          country: this.state.countryValue,
+        })
+        .then((res) => {
+          console.log(res.data.data.states, "state");
+          // {this.setState({country:res.data.data})}
+          {
+            this.setState({ sta: res.data.data.states });
+          }
+        });
+    }
   }
+
+  
   render() {
     return (
       <div className="">

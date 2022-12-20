@@ -5,7 +5,8 @@ import { TextField, Button } from "@mui/material";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import Region from "./Region";
+// import Region from "./Region";
+import State from "./State";
 import Data from "../Data.json";
 
 export default class Order extends Component {
@@ -40,7 +41,8 @@ export default class Order extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert(`submitted`);
+    // alert(`submitted`);
+    console.log(this.state.user);
     window.location=`/bill`
   };
 
@@ -55,9 +57,11 @@ export default class Order extends Component {
 // }
 
   handleInputs = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+
+    // const value = event.target.value;
+    // const name = event.target.name;
+    const {name,value}=event.target;
+
     this.setState({user:{ ...this.state.user, [name]: value }});
   };
   // const {
@@ -137,7 +141,7 @@ export default class Order extends Component {
                 onChange={this.handleInputs}
               />
 
-              <Region />
+              <State/>
               <TextField
                 sx={{ width: "75%", margin: "0px 20px 20px 20px" }}
                 label="Address"
